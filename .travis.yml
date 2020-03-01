@@ -2,7 +2,7 @@ sudo: required
 language: generic
 
 services:
-    -docker
+    - docker
 
 before_install:
     - docker build -t umeshsb/react-test -f ./client/Dockerfile.dev ./client
@@ -11,10 +11,10 @@ script:
     - docker run -e CI=true umeshsb/react-test npm test -- --coverage
 
 after-success:
-    -docker build -t umeshsb/multi-client ./client
-    -docker build -t umeshsb/multi-nginx ./nginx
-    -docker build -t umeshsb/multi-server ./server
-    -docker build -t umeshsb/multi-worker ./worker
+    - docker build -t umeshsb/multi-client ./client
+    - docker build -t umeshsb/multi-nginx ./nginx
+    - docker build -t umeshsb/multi-server ./server
+    - docker build -t umeshsb/multi-worker ./worker
     # Login to docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     
