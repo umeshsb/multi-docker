@@ -19,9 +19,9 @@ after-success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     
     # Take these images and push them to docker hub
-    - docker push umeshsb/multi-client
-    - docker push umeshsb/multi-nginx
-    - docker push umeshsb/multi-server
-    - docker push umeshsb/multi-worker
+    - docker push umeshbiradar/umeshsb:multi-client
+    - docker push umeshbiradarumeshsb:multi-nginx
+    - docker push umeshbiradarumeshsb:multi-server
+    - docker push umeshbiradarumeshsb:multi-worker
 
 
