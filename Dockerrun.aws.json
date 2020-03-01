@@ -1,0 +1,45 @@
+{
+    "_comment": [
+        "hostname :This is name used in docker-compose.yml file for this specific image ",
+        "essential :  This says when this container crashes do we need to stop / kill all containers"
+    ],
+
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions":[
+        {
+            "name" : "client",
+            "image": "umeshsb/multi-client", 
+            "hostname" : "client",
+            "essential" : false
+        },
+        {
+            "name" : "server",
+            "image": "umeshsb/multi-server", 
+            "hostname" : "api", 
+            "essential" : false
+        },
+        {
+            "name" : "worker",
+            "image": "umeshsb/multi-worker", 
+            "hostname" : "worker",
+            "essential" : false
+
+        },
+        {
+            "name" : "nginx",
+            "image": "umeshsb/multi-nginx", 
+            "hostname" : "nginx",
+            "essential" : true,
+            "portMappings": [
+                {
+                    "hostname" : 80,
+                    "continerPort" : 80
+                }
+            ],
+            "links" :["client","server"]
+        }
+        
+
+    ]
+
+}

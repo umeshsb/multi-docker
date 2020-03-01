@@ -1,0 +1,16 @@
+sudo: required
+
+services:
+    -docker
+
+before_install:
+    - docker build -t umeshsb/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run umeshsb/react-test test -- --coverage
+
+after-success:
+    -docker build -t umeshsb/multi-client ./client
+    -docker build -t umeshsb/multi-nginx ./nginx
+    -docker build -t umeshsb/multi-server ./server
+    -docker build -t umeshsb/multi-worker ./worker
